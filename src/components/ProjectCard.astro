@@ -1,0 +1,32 @@
+---
+import type { Project } from '../data/projects';
+import ArrowLink from './ArrowLink.astro';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="reveal flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-colors hover:border-accent/40 sm:p-7">
+  <div class="flex items-baseline justify-between gap-4">
+    <h3 class="font-display text-2xl tracking-tight">{project.title}</h3>
+    {project.year && <span class="shrink-0 text-sm text-muted">{project.year}</span>}
+  </div>
+  <p class="mt-1 text-sm font-medium text-accent">{project.role}</p>
+
+  <p class="mt-4 flex-1 leading-relaxed text-muted">{project.description}</p>
+
+  <ul class="mt-5 flex flex-wrap gap-1.5">
+    {
+      project.tags.map((t) => (
+        <li class="rounded-md bg-bg px-2 py-1 text-xs text-muted ring-1 ring-border">{t}</li>
+      ))
+    }
+  </ul>
+
+  <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+    {project.links.map((l) => <ArrowLink href={l.href}>{l.label}</ArrowLink>)}
+  </div>
+</article>

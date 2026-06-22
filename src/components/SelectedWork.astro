@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets';
+import SectionHeading from './SectionHeading.astro';
+import ProjectCard from './ProjectCard.astro';
+import ArrowLink from './ArrowLink.astro';
+import { flagship, featuredProjects } from '../data/projects';
+
+import overview from '../assets/work/xr-hotspots-overview.jpg';
+import detail from '../assets/work/xr-hotspot-detail.jpg';
+import inAction from '../assets/work/xr-in-action.jpg';
+import infoPanel from '../assets/work/xr-info-panel.jpg';
+
+const thumbs = [
+  { src: detail, alt: 'A single XR hotspot with image and details' },
+  { src: infoPanel, alt: 'The AI voice-interaction info panel' },
+  { src: inAction, alt: 'The app running live on the Apple Vision Pro' },
+];
+---
+
+<section id="work" class="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+  <SectionHeading eyebrow="Selected Work" title="Things I've built." />
+
+  <!-- Flagship -->
+  <article class="reveal mt-12 overflow-hidden rounded-3xl border border-border bg-surface">
+    <Image
+      src={overview}
+      alt="Interactive hotspots overlaid on a real Polestar 2, seen through the Apple Vision Pro"
+      widths={[640, 960, 1280]}
+      sizes="(min-width: 1024px) 960px, 100vw"
+      class="aspect-[16/9] w-full object-cover"
+    />
+
+    <div class="p-6 sm:p-9">
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+        <span class="rounded-full bg-accent/10 px-2.5 py-1 text-xs font-medium text-accent">Flagship</span>
+        <span class="text-sm text-muted">{flagship.year}</span>
+      </div>
+
+      <h3 class="mt-4 font-display text-3xl tracking-tight sm:text-4xl">{flagship.title}</h3>
+      <p class="mt-1 text-sm font-medium text-accent">{flagship.role}</p>
+
+      <p class="mt-4 max-w-3xl leading-relaxed text-muted">{flagship.description}</p>
+
+      <div class="mt-6 grid grid-cols-3 gap-3">
+        {
+          thumbs.map((t) => (
+            <Image
+              src={t.src}
+              alt={t.alt}
+              widths={[240, 480]}
+              sizes="(min-width: 640px) 300px, 30vw"
+              class="aspect-[4/3] w-full rounded-lg border border-border object-cover"
+            />
+          ))
+        }
+      </div>
+
+      <ul class="mt-6 flex flex-wrap gap-1.5">
+        {flagship.tags.map((t) => <li class="rounded-md bg-bg px-2 py-1 text-xs text-muted ring-1 ring-border">{t}</li>)}
+      </ul>
+
+      {flagship.note && <p class="mt-5 text-sm text-muted italic">{flagship.note}</p>}
+
+      <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+        {flagship.links.map((l) => <ArrowLink href={l.href}>{l.label}</ArrowLink>)}
+      </div>
+    </div>
+  </article>
+
+  <!-- Other featured -->
+  <div class="mt-6 grid gap-6 md:grid-cols-2">
+    {featuredProjects.map((p) => <ProjectCard project={p} />)}
+  </div>
+</section>
