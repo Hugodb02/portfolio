@@ -22,7 +22,7 @@ export const flagship: Project = {
   role: '.NET & XR Developer · In The Pocket',
   year: '2025',
   description:
-    'A proof-of-concept spatial-computing app for the Apple Vision Pro that overlays interactive hotspots and a real-time multimodal AI assistant onto real equipment — demoed on a Polestar 2 — enabling hands-free industrial training and troubleshooting.',
+    'A proof-of-concept spatial-computing app for the Apple Vision Pro that overlays interactive hotspots and a real-time multimodal AI assistant onto real equipment. Demoed on a Polestar 2, it lets technicians train and troubleshoot hands-free.',
   tags: ['Unity', 'PolySpatial', 'VisionOS', 'C#', 'RealityKit Object Capture', 'Multimodal AI', 'Blender'],
   links: [
     {
@@ -31,7 +31,7 @@ export const flagship: Project = {
     },
     { label: 'Demo & presentation', href: 'https://canva.link/9mtzwwxeh5b0pt2' },
   ],
-  note: 'Built during my In The Pocket internship and presented as a finished showcase — it runs on Vision Pro hardware.',
+  note: 'Built during my In The Pocket internship and presented as a finished showcase that runs on Vision Pro hardware.',
 };
 
 export const featuredProjects: Project[] = [
@@ -49,7 +49,7 @@ export const featuredProjects: Project[] = [
     title: 'Mobile Todo App',
     role: 'School capstone · eindproject',
     description:
-      'A cross-platform mobile to-do app with Firebase-backed data, persisted global state, form validation and multi-pattern navigation — the capstone project for the Mobile module.',
+      'A cross-platform mobile to-do app with Firebase-backed data, persisted global state, form validation and multi-pattern navigation. It was the capstone project for the Mobile module.',
     tags: ['React Native', 'Expo', 'TypeScript', 'Firebase', 'Redux Toolkit', 'React Query', 'Formik'],
     links: [{ label: 'GitHub', href: 'https://github.com/Hugodb02/todo-app' }],
   },

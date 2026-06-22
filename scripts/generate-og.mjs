@@ -1,6 +1,6 @@
 // One-off generator for the Open Graph social card (public/images/og-image.png).
 // Run with: node scripts/generate-og.mjs
-// Uses sharp, which ships with Astro — no extra dependency.
+// Uses sharp, which ships with Astro, so no extra dependency.
 import sharp from 'sharp';
 import { mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
