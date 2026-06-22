@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import SectionHeading from './SectionHeading.astro';
 import ProjectCard from './ProjectCard.astro';
 import ArrowLink from './ArrowLink.astro';
+import MoreProjects from './MoreProjects.astro';
 import { flagship, featuredProjects } from '../data/projects';
 
 import overview from '../assets/work/xr-hotspots-overview.jpg';
@@ -71,4 +72,6 @@ const thumbs = [
   <div class="mt-6 grid gap-6 md:grid-cols-2">
     {featuredProjects.map((p) => <ProjectCard project={p} />)}
   </div>
+
+  <MoreProjects />
 </section>
