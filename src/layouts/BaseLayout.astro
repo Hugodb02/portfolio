@@ -43,6 +43,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <!-- Set the theme before paint to avoid a flash of the wrong colour -->
     <script is:inline>
       (() => {
+        // Mark that JS is available so reveal-on-scroll can hide content; without
+        // this class everything stays visible for no-JS users and crawlers.
+        document.documentElement.classList.add('js');
         try {
           const stored = localStorage.getItem('theme');
           const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
