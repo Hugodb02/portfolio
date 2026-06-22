@@ -1,0 +1,18 @@
+---
+import { languages } from '../data/skills';
+---
+
+<section id="languages" class="mx-auto max-w-5xl px-6 pb-20 sm:pb-28">
+  <h2 class="reveal text-sm font-medium tracking-widest text-accent uppercase">Languages</h2>
+
+  <ul class="reveal mt-6 grid gap-4 sm:grid-cols-3">
+    {
+      languages.map((l) => (
+        <li class="rounded-2xl border border-border bg-surface px-5 py-4">
+          <p class="font-display text-xl tracking-tight">{l.name}</p>
+          <p class="mt-0.5 text-sm text-muted">{l.level}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
