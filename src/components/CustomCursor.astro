@@ -1,0 +1,66 @@
+---
+// manudevloo-style custom cursor: a dot that tracks the pointer exactly and a
+// ring that eases behind it. Only runs on fine pointers; touch keeps native.
+---
+
+<div id="cursor-ring" class="cursor-el" aria-hidden="true"></div>
+<div id="cursor-dot" class="cursor-el" aria-hidden="true"></div>
+
+<script is:inline>
+  (() => {
+    const fine = window.matchMedia('(pointer: fine)').matches;
+    if (!fine) return;
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    if (!dot || !ring) return;
+
+    document.body.classList.add('has-custom-cursor', 'cursor-idle');
+
+    let mx = window.innerWidth / 2;
+    let my = window.innerHeight / 2;
+    let rx = mx;
+    let ry = my;
+
+    const place = (el, x, y) => {
+      el.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+    };
+    place(dot, mx, my);
+    place(ring, rx, ry);
+
+    window.addEventListener(
+      'mousemove',
+      (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+        place(dot, mx, my);
+        if (reduce) place(ring, mx, my);
+        document.body.classList.remove('cursor-idle');
+      },
+      { passive: true },
+    );
+
+    document.addEventListener('mouseleave', () => document.body.classList.add('cursor-idle'));
+    document.addEventListener('mouseenter', () => document.body.classList.remove('cursor-idle'));
+
+    const hoverSel = "a, button, summary, input, textarea, label, [role='button'], [data-cursor]";
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest && e.target.closest(hoverSel)) document.body.classList.add('cursor-hover');
+    });
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.closest && e.target.closest(hoverSel)) document.body.classList.remove('cursor-hover');
+    });
+
+    if (!reduce) {
+      const lerp = (a, b, n) => a + (b - a) * n;
+      const loop = () => {
+        rx = lerp(rx, mx, 0.18);
+        ry = lerp(ry, my, 0.18);
+        place(ring, rx, ry);
+        requestAnimationFrame(loop);
+      };
+      requestAnimationFrame(loop);
+    }
+  })();
+</script>
