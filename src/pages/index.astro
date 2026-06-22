@@ -1,18 +1,14 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hugo De Bosschere — Junior Software Engineer</title>
-  </head>
-  <body>
-    <main class="mx-auto max-w-3xl px-6 py-24">
-      <h1 class="font-display text-5xl">Hugo De Bosschere</h1>
-      <p class="mt-4 text-muted">Scaffold online. Sections coming next.</p>
-    </main>
-  </body>
-</html>
+<BaseLayout>
+  <main class="mx-auto max-w-3xl px-6 py-24">
+    <div class="flex items-center justify-between">
+      <h1 class="font-display text-5xl tracking-tight">Hugo De Bosschere</h1>
+      <ThemeToggle />
+    </div>
+    <p class="mt-4 text-muted">Foundation ready — sections coming next.</p>
+  </main>
+</BaseLayout>
