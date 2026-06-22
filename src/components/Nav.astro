@@ -1,0 +1,98 @@
+---
+import { site, navLinks } from '../data/site';
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="sticky top-0 z-50 border-b border-border/70 bg-bg/80 backdrop-blur-md">
+  <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-3" aria-label="Primary">
+    <a href="#top" class="font-display text-lg font-semibold tracking-tight text-ink">
+      Hugo<span class="text-accent">.</span>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden items-center gap-1 md:flex">
+      {
+        navLinks.map((l) => (
+          <a
+            href={l.href}
+            data-nav={l.href}
+            class="rounded-full px-3 py-1.5 text-sm text-muted transition-colors hover:text-ink aria-[current=true]:text-ink"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="flex items-center gap-2">
+      <a
+        href={site.cv}
+        class="hidden rounded-full bg-accent px-4 py-1.5 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90 sm:inline-block"
+      >
+        Download CV
+      </a>
+      <ThemeToggle />
+
+      <!-- Mobile menu (no-JS friendly via <details>) -->
+      <details id="mobile-menu" class="relative md:hidden">
+        <summary
+          class="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-full border border-border text-ink [&::-webkit-details-marker]:hidden"
+          aria-label="Toggle menu"
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+        </summary>
+        <div class="absolute right-0 top-12 w-52 rounded-xl border border-border bg-surface p-2 shadow-lg">
+          {
+            navLinks.map((l) => (
+              <a href={l.href} data-mobile-link class="block rounded-lg px-3 py-2 text-sm text-ink transition-colors hover:bg-bg">
+                {l.label}
+              </a>
+            ))
+          }
+          <a href={site.cv} data-mobile-link class="mt-1 block rounded-lg bg-accent px-3 py-2 text-center text-sm font-medium text-accent-ink">
+            Download CV
+          </a>
+        </div>
+      </details>
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  (() => {
+    // Close the mobile menu after picking a link.
+    const menu = document.getElementById('mobile-menu');
+    if (menu) {
+      menu.querySelectorAll('[data-mobile-link]').forEach((a) =>
+        a.addEventListener('click', () => menu.removeAttribute('open')),
+      );
+      document.addEventListener('click', (e) => {
+        if (menu.hasAttribute('open') && !menu.contains(e.target)) menu.removeAttribute('open');
+      });
+    }
+
+    // Highlight the nav link for the section currently in view.
+    const links = Array.from(document.querySelectorAll('[data-nav]'));
+    const byId = new Map(links.map((l) => [l.getAttribute('data-nav'), l]));
+    const sections = links
+      .map((l) => document.querySelector(l.getAttribute('data-nav')))
+      .filter(Boolean);
+    if ('IntersectionObserver' in window && sections.length) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              links.forEach((l) => l.removeAttribute('aria-current'));
+              const active = byId.get('#' + e.target.id);
+              if (active) active.setAttribute('aria-current', 'true');
+            }
+          }
+        },
+        { rootMargin: '-40% 0px -55% 0px' },
+      );
+      sections.forEach((s) => io.observe(s));
+    }
+  })();
+</script>
