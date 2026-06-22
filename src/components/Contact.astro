@@ -1,0 +1,58 @@
+---
+import { site } from '../data/site';
+
+const contacts = [
+  { label: 'Email', value: site.email, href: `mailto:${site.email}` },
+  { label: 'Phone', value: site.phone, href: `tel:${site.phoneHref}` },
+  { label: 'GitHub', value: 'github.com/Hugodb02', href: site.github, external: true },
+  {
+    label: 'LinkedIn',
+    value: 'in/hugo-de-bosschere',
+    href: site.linkedin,
+    external: true,
+  },
+];
+---
+
+<section id="contact" class="border-t border-border bg-surface">
+  <div class="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+    <p class="reveal text-sm font-medium tracking-widest text-accent uppercase">Contact</p>
+    <h2 class="reveal mt-3 max-w-2xl font-display text-3xl leading-tight tracking-tight sm:text-4xl">
+      Let's build something. I'm open to junior roles in Belgium.
+    </h2>
+    <p class="reveal mt-4 text-muted">
+      Based in {site.location} · Driver's license {site.driversLicense}
+    </p>
+
+    <dl class="reveal mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+      {
+        contacts.map((c) => (
+          <div>
+            <dt class="text-sm tracking-wide text-muted uppercase">{c.label}</dt>
+            <dd class="mt-1">
+              <a
+                href={c.href}
+                {...c.external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+                class="font-display text-lg tracking-tight text-ink underline-offset-4 transition-colors hover:text-accent hover:underline"
+              >
+                {c.value}
+              </a>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <div class="reveal mt-10">
+      <a
+        href={site.cv}
+        class="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"></path>
+        </svg>
+        Download CV
+      </a>
+    </div>
+  </div>
+</section>
