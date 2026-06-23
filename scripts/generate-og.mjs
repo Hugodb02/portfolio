@@ -16,7 +16,7 @@ const svg = `
     <text x="80" y="270" font-size="92" font-weight="400">Hugo De Bosschere</text>
   </g>
   <text x="84" y="200" fill="#7c93f0" font-family="Arial, sans-serif" font-size="28" letter-spacing="4" font-weight="700">JUNIOR SOFTWARE ENGINEER · GHENT, BELGIUM</text>
-  <text x="84" y="345" fill="#9a9a9a" font-family="Arial, sans-serif" font-size="34">Back-end developer in C# / .NET. Recent graduate, high distinction.</text>
+  <text x="84" y="345" fill="#9a9a9a" font-family="Arial, sans-serif" font-size="34">Software engineer, strongest in C# / .NET, across the stack.</text>
   <g font-family="Arial, sans-serif" font-size="26" fill="#9a9a9a">
     <text x="84" y="540">github.com/Hugodb02</text>
   </g>
