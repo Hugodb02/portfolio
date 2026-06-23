@@ -4,7 +4,7 @@ A clean, fast, single-page portfolio for **Hugo De Bosschere**, a junior softwar
 
 ![Portfolio social card](./public/images/og-image.png)
 
-> **Live:** [portfolio-hugo-de-bosschere.vercel.app](https://portfolio-hugo-de-bosschere.vercel.app)
+> **Live:** [hugodebosschere.be](https://hugodebosschere.be)
 
 ---
 
