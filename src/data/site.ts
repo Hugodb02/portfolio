@@ -1,9 +1,10 @@
 export const site = {
   name: 'Hugo De Bosschere',
   title: 'Junior Software Engineer',
-  tagline: 'I build software end to end, from C# / .NET back-ends to the interfaces people actually use.',
+  tagline:
+    'I build software end to end, from C# / .NET back-ends to the React and TypeScript interfaces people actually use.',
   intro:
-    'Recent graduate (high distinction), looking to deepen my .NET expertise in a team that values quality and technical freedom.',
+    'Recent graduate (high distinction), looking to grow as a full-stack developer in a team that values clean code and quality.',
   location: 'Oostakker, Ghent · Belgium',
   email: 'debosscherehugo@hotmail.com',
   phone: '+32 468 19 27 99',
